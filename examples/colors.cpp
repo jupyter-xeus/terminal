@@ -1,20 +1,15 @@
-#include <cpp-terminal/terminal.h>
-#include <cpp-terminal/version.h>
+#include <cpp-terminal/base.hpp>
+#include <cpp-terminal/version.hpp>
 
-using Term::bg;
-using Term::color;
-using Term::color24_bg;
-using Term::color24_fg;
-using Term::fg;
-using Term::style;
-using Term::Terminal;
+#include <iostream>
+
+using namespace Term;
 
 int main() {
     std::cout << "Running cpp-terminal version: "
               << CPP_TERMINAL_VERSION_COMPLETE << std::endl;
     try {
-        Terminal term;
-        if (Terminal::is_stdout_a_tty()) {
+        if (is_stdout_a_tty()) {
             std::cout << "Standard output is attached to a terminal."
                       << std::endl;
         } else {
@@ -58,7 +53,7 @@ int main() {
         }
         std::cout << "\n";
 
-    } catch (const std::runtime_error& re) {
+    } catch (const std::runtime_error &re) {
         std::cerr << "Runtime error: " << re.what() << std::endl;
         return 2;
     } catch (...) {
